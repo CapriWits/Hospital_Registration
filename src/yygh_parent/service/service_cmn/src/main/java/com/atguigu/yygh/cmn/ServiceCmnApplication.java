@@ -1,18 +1,18 @@
-package com.atguigu.yygh.hosp;
+package com.atguigu.yygh.cmn;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
- * @Description: 启动类
+ * @Description: 数字字典启动类
  * @Author: Hypocrite30
- * @Date: 2021/8/30 22:06
+ * @Date: 2021/9/1 17:15
  */
 @SpringBootApplication
-@ComponentScan(basePackages = "com.atguigu") //统一扫描路径
-public class ServiceHospApplication {
+@ComponentScan(basePackages = "com.atguigu")
+public class ServiceCmnApplication {
     public static void main(String[] args) {
-        SpringApplication.run(ServiceHospApplication.class, args);
+        SpringApplication.run(ServiceCmnApplication.class, args);
     }
 }

@@ -14,6 +14,7 @@
     <modules>
         <module>service_user</module>
         <module>service_hosp</module>
+        <module>service_cmn</module>
     </modules>
 
     <properties>
@@ -22,9 +23,22 @@
     </properties>
 
     <dependencies>
+        <!--entity封装到model模块中-->
         <dependency>
             <groupId>com.atguigu</groupId>
             <artifactId>model</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <!--service的工具模块，包含swagger2-->
+        <dependency>
+            <groupId>com.atguigu</groupId>
+            <artifactId>service-util</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <!--common工具模块，包含Result-->
+        <dependency>
+            <groupId>com.atguigu</groupId>
+            <artifactId>common-util</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <!--web-->

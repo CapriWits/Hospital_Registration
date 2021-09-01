@@ -12,16 +12,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * <p>
- * Dict
- * </p>
- *
- * @author qy
+ * 数据字典实体类
  */
 @Data
 @ApiModel(description = "数据字典")
 @TableName("dict")
-public class Dict {
+public class Dict extends BaseEntity{
 
     private static final long serialVersionUID = 1L;
 
@@ -63,7 +59,7 @@ public class Dict {
     private String dictCode;
 
     @ApiModelProperty(value = "是否包含子节点")
-    @TableField(exist = false)
+    @TableField(exist = false) //实际表中不存在，为了让前端实现层级关系而存在
     private boolean hasChildren;
 
 }
