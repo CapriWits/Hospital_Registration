@@ -11,11 +11,14 @@ import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 import com.atguigu.yygh.msm.service.MsmService;
 import com.atguigu.yygh.msm.utils.ConstantPropertiesUtils;
+import com.cloopen.rest.sdk.BodyType;
+import com.cloopen.rest.sdk.CCPRestSmsSDK;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @Description: 短信服务 impl
@@ -32,6 +35,7 @@ public class MsmServiceImpl implements MsmService {
         if (StringUtils.isEmpty(phone)) {
             return false;
         }
+        /*
         //整合阿里云短信服务
         //设置相关参数
         DefaultProfile profile = DefaultProfile.
@@ -69,5 +73,39 @@ public class MsmServiceImpl implements MsmService {
             e.printStackTrace();
         }
         return false;
+        */
+
+        //整合容联云
+        //生产环境请求地址
+        String serverIp = "app.cloopen.com";
+        //请求端口
+        String serverPort = "8883";
+        CCPRestSmsSDK sdk = new CCPRestSmsSDK();
+        sdk.init(serverIp, serverPort);
+        //设置容联云账号信息
+        sdk.setAccount(ConstantPropertiesUtils.ACCOUNT_SID, ConstantPropertiesUtils.ACCOUNT_TOKEN);
+        sdk.setAppId(ConstantPropertiesUtils.APP_ID);
+        sdk.setBodyType(BodyType.Type_JSON);
+        String phoneNumber = phone; // 发送的号码
+        String templateId = "1"; // 默认模板id
+        String[] datas = {code, "2"}; //传入验证码和验证码过期时间
+
+        HashMap<String, Object> result = sdk.sendTemplateSMS(phoneNumber, templateId, datas);
+        if ("000000".equals(result.get("statusCode"))) {
+            //正常返回输出data包体信息（map）
+            HashMap<String, Object> data = (HashMap<String, Object>) result.get("data");
+            Set<String> keySet = data.keySet();
+            for (String key : keySet) {
+                Object object = data.get(key);
+                System.out.println(key + " = " + object);
+            }
+            //成功
+            return true;
+        } else {
+            //异常返回输出错误码和错误信息
+            System.out.println("错误码=" + result.get("statusCode") + " 错误信息= " + result.get("statusMsg"));
+            //失败
+            return false;
+        }
     }
 }

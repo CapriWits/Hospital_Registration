@@ -1,8 +1,10 @@
 package com.atguigu.yygh.hosp.controller.api;
 
 import com.atguigu.yygh.common.result.Result;
+import com.atguigu.yygh.hosp.service.DepartmentService;
 import com.atguigu.yygh.hosp.service.HospitalService;
 import com.atguigu.yygh.model.hosp.Hospital;
+import com.atguigu.yygh.vo.hosp.DepartmentVo;
 import com.atguigu.yygh.vo.hosp.HospitalQueryVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Description: 医院用户平台 前台接口
@@ -27,6 +30,9 @@ public class HospApiController {
 
     @Autowired
     private HospitalService hospitalService;
+
+    @Autowired
+    private DepartmentService departmentService;
 
     @ApiOperation(value = "查询医院列表")
     @GetMapping("findHospList/{page}/{limit}")
@@ -45,15 +51,18 @@ public class HospApiController {
         return Result.ok(list);
     }
 
-    // @ApiOperation(value = "获取分页列表")
-    // @GetMapping("{page}/{limit}")
-    // public Result index(
-    //         @PathVariable Integer page,
-    //         @PathVariable Integer limit,
-    //         HospitalQueryVo hospitalQueryVo) {
-    //     //显示上线的医院
-    //     //hospitalQueryVo.setStatus(1);
-    //     Page<Hospital> pageModel = hospitalService.selectHospPage(page, limit, hospitalQueryVo);
-    //     return Result.ok(pageModel);
-    // }
+    @ApiOperation(value = "根据医院编号获取科室")
+    @GetMapping("department/{hoscode}")
+    public Result index(@PathVariable String hoscode) {
+        List<DepartmentVo> list = departmentService.findDeptTree(hoscode);
+        return Result.ok(list);
+    }
+
+    @ApiOperation(value = "根据医院编号获取医院预约挂号详情")
+    @GetMapping("findHospDetail/{hoscode}")
+    public Result item(@PathVariable String hoscode) {
+        Map<String, Object> map = hospitalService.item(hoscode);
+        return Result.ok(map);
+    }
+
 }

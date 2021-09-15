@@ -7,14 +7,6 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-/**
- * <p>
- * 角色
- * </p>
- *
- * @author qy
- * @since 2019-11-08
- */
 @Data
 @ApiModel(description = "角色")
 @TableName("acl_role")

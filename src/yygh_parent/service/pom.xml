@@ -15,6 +15,7 @@
         <module>service_user</module>
         <module>service_hosp</module>
         <module>service_cmn</module>
+        <module>service_msm</module>
     </modules>
 
     <properties>
@@ -63,15 +64,15 @@
             <optional>true</optional>
         </dependency>
         <!-- 服务调用feign -->
-        <!--<dependency>
+        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>-->
+        </dependency>
         <!-- 服务注册 -->
-        <!--<dependency>
+        <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-        </dependency>-->
+        </dependency>
         <!-- 流量控制 -->
         <!--<dependency>
             <groupId>com.alibaba.cloud</groupId>
@@ -97,7 +98,8 @@
             </resource>
             <resource>
                 <directory>src/main/resources</directory>
-                <includes> <include>**/*.yml</include>
+                <includes>
+                    <include>**/*.yml</include>
                     <include>**/*.properties</include>
                     <include>**/*.xml</include>
                 </includes>

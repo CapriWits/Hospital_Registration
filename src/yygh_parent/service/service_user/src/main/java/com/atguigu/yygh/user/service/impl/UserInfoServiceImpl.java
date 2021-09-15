@@ -41,10 +41,10 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         }
 
         // 判断手机验证码和输入的验证码是否一致
-        // String redisCode = redisTemplate.opsForValue().get(phone);
-        // if (!code.equals(redisCode)) {
-        //     throw new YyghException(ResultCodeEnum.CODE_ERROR);
-        // }
+        String redisCode = redisTemplate.opsForValue().get(phone);
+        if (!code.equals(redisCode)) {
+            throw new YyghException(ResultCodeEnum.CODE_ERROR);
+        }
 
         //绑定手机号码
         UserInfo userInfo = null;
@@ -80,9 +80,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         }
 
         //不是第一次，直接登录
-        //返回登录信息
-        //返回登录用户名
-        //返回token信息
+        //返回登录信息、登录用户名、token信息
         Map<String, Object> map = new HashMap<>();
         String name = userInfo.getName();
         if (StringUtils.isEmpty(name)) {

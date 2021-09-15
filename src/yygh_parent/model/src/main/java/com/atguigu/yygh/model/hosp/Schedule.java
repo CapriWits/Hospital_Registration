@@ -14,13 +14,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.math.BigDecimal;
 import java.util.Date;
 
-/**
- * <p>
- * Schedule
- * </p>
- *
- * @author qy
- */
 @Data
 @ApiModel(description = "Schedule")
 @Document("Schedule")

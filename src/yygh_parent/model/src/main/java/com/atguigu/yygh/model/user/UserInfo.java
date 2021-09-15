@@ -7,13 +7,6 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-/**
- * <p>
- * UserInfo
- * </p>
- *
- * @author qy
- */
 @Data
 @ApiModel(description = "UserInfo")
 @TableName("user_info")

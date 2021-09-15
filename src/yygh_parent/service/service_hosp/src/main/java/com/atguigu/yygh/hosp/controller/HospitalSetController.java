@@ -18,13 +18,14 @@ import java.util.List;
 import java.util.Random;
 
 /**
+ * @Description: 医院设置管理 Controller
  * @Author: Hypocrite30
  * @Date: 2021/8/30 22:54
  */
 @Api(tags = "医院设置管理")
 @RestController
 @RequestMapping("/admin/hosp/hospitalSet")
-@CrossOrigin // 解决跨域问题
+// @CrossOrigin // 解决跨域问题
 public class HospitalSetController {
 
     //注入Service

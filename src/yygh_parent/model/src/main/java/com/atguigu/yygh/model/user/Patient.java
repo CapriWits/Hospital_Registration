@@ -10,13 +10,6 @@ import lombok.Data;
 
 import java.util.Date;
 
-/**
- * <p>
- * Patient
- * </p>
- *
- * @author qy
- */
 @Data
 @ApiModel(description = "Patient")
 @TableName("patient")
