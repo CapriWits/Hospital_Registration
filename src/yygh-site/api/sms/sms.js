@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-const api_name = `/api/sms`
+const api_name = `/api/msm`
 
 export default {
   sendCode(mobile) {

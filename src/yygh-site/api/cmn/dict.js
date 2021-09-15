@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-const api_name = '/api/cmn/dict'
+const api_name = '/admin/cmn/dict'
 
 export default {
   findByDictCode(dictCode) {

@@ -13,6 +13,7 @@ service.interceptors.request.use(
   config => {
     // token 先不处理，后续使用时在完善
     if (cookie.get('token')) {
+      //把token放到cookie里面
       config.headers['token'] = cookie.get('token')
     }
     return config
@@ -23,7 +24,7 @@ service.interceptors.request.use(
 // http response 拦截器
 service.interceptors.response.use(
   response => {
-    if (response.data.code === 208) {
+    if (response.data.code === 208) { //208位未登录
       eventLogin.$emit('loginDialogEvent')
       return
     } else {
