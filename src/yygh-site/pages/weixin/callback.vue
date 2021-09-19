@@ -8,8 +8,6 @@
 
 <script>
 export default {
-  layout: "empty",
-
   data() {
     return {
 

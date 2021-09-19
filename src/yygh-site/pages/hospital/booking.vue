@@ -181,13 +181,13 @@ export default {
 
       this.findPatientList()
     },
-
+    //获取排班信息
     getSchedule() {
       hospitalApi.getSchedule(this.scheduleId).then(response => {
         this.schedule = response.data
       })
     },
-
+    //预约挂号需要选病人，这里获取病人列表
     findPatientList() {
       patientApi.findList().then(response => {
         this.patientList = response.data

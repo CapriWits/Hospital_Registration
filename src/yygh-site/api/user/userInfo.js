@@ -10,19 +10,19 @@ export default {
       data: userInfo
     })
   },
-
+  //跟巨userid获取用户信息
   getUserInfo() {
     return request({
       url: `${api_name}/auth/getUserInfo`,
       method: `get`
     })
   },
-
-  saveUserAuah(userAuah) {
+  //用户认证
+  saveUserAuah(userAuth) {
     return request({
-      url: `${api_name}/auth/userAuah`,
+      url: `${api_name}/auth/userAuth`,
       method: 'post',
-      data: userAuah
+      data: userAuth
     })
   }
 }

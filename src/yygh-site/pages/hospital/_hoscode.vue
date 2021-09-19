@@ -209,7 +209,6 @@ export default {
     },
 
     schedule(depcode) {
-      debugger;
       // 登录判断
       let token = cookie.get("token");
       if (!token) {
@@ -225,14 +224,10 @@ export default {
           window.location.href = "/user";
           return;
         }
-      });
+      })
 
-      window.location.href =
-        "/hospital/schedule?hoscode=" +
-        this.hospital.hoscode +
-        "&depcode=" +
-        depcode;
-    },
+      window.location.href = '/hospital/schedule?hoscode=' + this.hospital.hoscode + "&depcode=" + depcode;
+    }
   },
 };
 </script>

@@ -31,21 +31,21 @@ export default {
       method: 'get'
     })
   },
-
+  //获取可预约排班信息分页
   getBookingScheduleRule(page, limit, hoscode, depcode) {
     return request({
       url: `${api_name}/auth/getBookingScheduleRule/${page}/${limit}/${hoscode}/${depcode}`,
       method: 'get'
     })
   },
-
+  //根据排班日期获取排班信息
   findScheduleList(hoscode, depcode, workDate) {
     return request({
       url: `${api_name}/auth/findScheduleList/${hoscode}/${depcode}/${workDate}`,
       method: 'get'
     })
   },
-
+  //根据排班id获取排班信息
   getSchedule(id) {
     return request({
       url: `${api_name}/getSchedule/${id}`,

@@ -128,7 +128,7 @@ export default {
     return {
       userAuah: defaultForm,
       certificatesTypeList: [],
-      fileUrl:'http://localhost/api/oss/file/fileUpload?fileHost=userAuah',
+      fileUrl:'http://localhost/api/oss/file/fileUpload',
 
       userInfo: {
         param: {}
