@@ -21,6 +21,7 @@ import java.util.List;
 
 
 /**
+ * 未登录，则预约挂号之前会跳转到登录界面
  * @Description: 全局Filter，统一处理会员登录与外部不允许访问的服务
  * @Author: Hypocrite30
  * @Date: 2021/9/15 21:45

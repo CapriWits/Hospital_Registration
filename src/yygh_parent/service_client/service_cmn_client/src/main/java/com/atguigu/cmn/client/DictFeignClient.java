@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * 将对应客户端的 Controller 方法直接复制过来
  * 补充好全路径
  * PathVariable加上入参变量名，不然要出错
- * @Description: 数字字典 API 接口
+ * @Description: 数字字典远程调用 API 接口
  * @Author: Hypocrite30
  * @Date: 2021/9/11 11:22
  */

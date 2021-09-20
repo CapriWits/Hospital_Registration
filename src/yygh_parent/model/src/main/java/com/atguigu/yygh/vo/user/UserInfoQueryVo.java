@@ -5,7 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 @Data
-@ApiModel(description="会员搜索对象")
+@ApiModel(description = "会员搜索对象")
 public class UserInfoQueryVo {
 
     @ApiModelProperty(value = "关键字")

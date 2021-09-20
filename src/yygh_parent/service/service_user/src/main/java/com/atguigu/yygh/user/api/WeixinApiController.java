@@ -7,7 +7,7 @@ import com.atguigu.yygh.common.result.Result;
 import com.atguigu.yygh.model.user.UserInfo;
 import com.atguigu.yygh.user.service.UserInfoService;
 import com.atguigu.yygh.user.utils.ConstantWxPropertiesUtils;
-// import com.atguigu.yygh.user.utils.HttpClientUtils;
+import com.atguigu.yygh.user.utils.HttpClientUtils;
 import com.sun.deploy.net.URLEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,19 +21,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @Description:
+ * @Description: 微信操作接口 Controller
  * @Author: Hypocrite30
  * @Date: 2021/9/15 22:42
  */
-//微信操作的接口
-@Controller
+@Controller //不用Rest返回数据，方便进行页面跳转
 @RequestMapping("/api/ucenter/wx")
 public class WeixinApiController {
 
     @Autowired
     private UserInfoService userInfoService;
 
-    //微信扫描后回调的方法
+    // 微信扫描后回调的方法
     @GetMapping("callback")
     public String callback(String code, String state) {
         //第一步 获取临时票据 code
@@ -47,12 +46,13 @@ public class WeixinApiController {
                 .append("&secret=%s")
                 .append("&code=%s")
                 .append("&grant_type=authorization_code");
+        // 再将上面%s 占位符替换成对应参数
         String accessTokenUrl = String.format(baseAccessTokenUrl.toString(),
                 ConstantWxPropertiesUtils.WX_OPEN_APP_ID,
                 ConstantWxPropertiesUtils.WX_OPEN_APP_SECRET,
                 code);
-        //使用httpclient请求这个地址
         try {
+            //使用httpclient请求这个地址
             String accesstokenInfo = HttpClientUtils.get(accessTokenUrl);
             System.out.println("accesstokenInfo:" + accesstokenInfo);
             //从返回字符串获取两个值 openid  和  access_token
@@ -69,6 +69,7 @@ public class WeixinApiController {
                         "?access_token=%s" +
                         "&openid=%s";
                 String userInfoUrl = String.format(baseUserInfoUrl, access_token, openid);
+                //带着access_token和openid再次向微信请求数据
                 String resultInfo = HttpClientUtils.get(userInfoUrl);
                 System.out.println("resultInfo:" + resultInfo);
                 JSONObject resultUserInfoJson = JSONObject.parseObject(resultInfo);
@@ -82,6 +83,7 @@ public class WeixinApiController {
                 userInfo = new UserInfo();
                 userInfo.setNickName(nickname);
                 userInfo.setOpenid(openid);
+                // 正常状态
                 userInfo.setStatus(1);
                 userInfoService.save(userInfo);
             }
@@ -118,13 +120,14 @@ public class WeixinApiController {
     //1 生成微信扫描二维码
     //返回生成二维码需要参数
     @GetMapping("getLoginParam")
-    @ResponseBody
+    @ResponseBody //返回数据
     public Result genQrConnect() {
         try {
             Map<String, Object> map = new HashMap<>();
             map.put("appid", ConstantWxPropertiesUtils.WX_OPEN_APP_ID);
-            map.put("scope", "snsapi_login");
+            map.put("scope", "snsapi_login"); //网页环境，此变量为定值
             String wxOpenRedirectUrl = ConstantWxPropertiesUtils.WX_OPEN_REDIRECT_URL;
+            //对重定向URL 按照 utf-8 编码
             wxOpenRedirectUrl = URLEncoder.encode(wxOpenRedirectUrl, "utf-8");
             map.put("redirect_uri", wxOpenRedirectUrl);
             map.put("state", System.currentTimeMillis() + "");

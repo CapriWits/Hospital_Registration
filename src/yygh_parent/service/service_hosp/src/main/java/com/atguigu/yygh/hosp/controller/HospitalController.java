@@ -35,9 +35,6 @@ public class HospitalController {
                            @PathVariable Integer limit,
                            HospitalQueryVo hospitalQueryVo) {
         Page<Hospital> pageModel = hospitalService.selectHospPage(page, limit, hospitalQueryVo);
-        // List<Hospital> content = pageModel.getContent();
-        // long totalElements = pageModel.getTotalElements();
-
         return Result.ok(pageModel);
     }
 
