@@ -134,6 +134,47 @@ export const constantRouterMap = [
   },
 
   {
+    path: '/order',
+    component: Layout,
+    redirect: '/order/orderInfo/list',
+    name: 'BasesInfo',
+    meta: { title: '订单管理', icon: 'table' },
+    alwaysShow: true,
+    children: [
+        {
+          path: 'orderInfo/list',
+          name: '订单列表',
+          component: () =>import('@/views/order/orderInfo/list'),
+          meta: { title: '订单列表' }
+        },
+        {
+          path: 'orderInfo/show/:id',
+          name: '查看',
+                component: () =>import('@/views/order/orderInfo/show'),
+          meta: { title: '查看', noCache: true },
+          hidden: true
+        }
+      ]
+  },
+
+  {
+    path: '/statistics',
+    component: Layout,
+    redirect: '/statistics/order/index',
+    name: 'BasesInfo',
+    meta: { title: '统计管理', icon: 'table' },
+    alwaysShow: true,
+    children: [
+        {
+          path: 'order/index',
+          name: '预约统计',
+          component: () =>import('@/views/statistics/order/index'),
+          meta: { title: '预约统计' }
+        }
+      ]
+  },
+
+  {
     path: '/nested',
     component: Layout,
     redirect: '/nested/menu1',

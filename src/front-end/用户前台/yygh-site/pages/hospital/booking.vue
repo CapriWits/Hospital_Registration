@@ -201,7 +201,7 @@ export default {
       this.activeIndex = index;
       this.patient = this.patientList[index]
     },
-
+    //生成订单
     submitOrder() {
       if(this.patient.id == null) {
         this.$message.error('请选择就诊人')
@@ -215,7 +215,7 @@ export default {
 
       this.submitBnt = '正在提交...'
       orderInfoApi.submitOrder(this.scheduleId, this.patient.id).then(response => {
-        let orderId = response.data
+        let orderId = response.data //订单id
         window.location.href = '/order/show?orderId=' + orderId
       }).catch(e => {
         this.submitBnt = '确认挂号'
